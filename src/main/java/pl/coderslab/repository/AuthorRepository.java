@@ -2,9 +2,12 @@ package pl.coderslab.repository;
 
 import org.springframework.stereotype.Repository;
 import pl.coderslab.entity.Author;
+import pl.coderslab.entity.Publisher;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 public class AuthorRepository {
@@ -37,9 +40,14 @@ public class AuthorRepository {
         return author;
     }
 
+    public List<Author> findAllAuthors() {
+        Query allAuthorsQuery = entityManager.createQuery("select a from Author a");
+        return allAuthorsQuery.getResultList();
+    }
+
     public Author removeAuthor(long id) {
         Author author = entityManager.find(Author.class, id);
-        if(author != null) {
+        if (author != null) {
             entityManager.remove(author);
         }
 

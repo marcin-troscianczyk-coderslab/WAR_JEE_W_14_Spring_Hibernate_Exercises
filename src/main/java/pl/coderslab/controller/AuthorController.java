@@ -21,7 +21,7 @@ public class AuthorController {
 
         Author author = authorService.findAuthorById(authorId);
 
-        return  author.toString();
+        return author.toString();
     }
 
     // POST /author firstNamet=Jan&lastName=Brzechwa

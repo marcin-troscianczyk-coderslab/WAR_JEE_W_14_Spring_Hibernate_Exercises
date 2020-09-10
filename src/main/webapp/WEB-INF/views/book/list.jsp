@@ -1,16 +1,25 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: test
-  Date: 2020-07-26
-  Time: 12:20
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+    <title>All books</title>
+</head>
+<body>
+
+<table>
+    <c:forEach items="${books}" var="book">
+        <tr>
+            <td>${book.id}</td>
+            <td>${book.title}</td>
+            <td>${book.rating}</td>
+            <td>${book.description}</td>
+            <td>${book.publisher.name}</td>
+                <%--<td>${book.authors}</td>--%>
+            <td><a href="edit?id=${book.id}">Edit</a></td>
+            <td><a href="remove?id=${book.id}" onclick="return confirm('Are you sure?')">Remove</a></td>
+        </tr>
+    </c:forEach>
+</table>
+
+</body>
 </html>

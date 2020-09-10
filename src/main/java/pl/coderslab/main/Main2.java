@@ -11,7 +11,7 @@ public class Main2 {
     public static void main(String[] args) {
 
         try (AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(AppConfig.class)) {
+                     new AnnotationConfigApplicationContext(AppConfig.class)) {
 
             EntityManagerFactory entityManagerFactory =
                     context.getBean("entityManagerFactory", EntityManagerFactory.class);

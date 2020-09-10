@@ -5,6 +5,7 @@ import pl.coderslab.entity.Publisher;
 import pl.coderslab.repository.PublisherRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class PublisherService {
@@ -26,6 +27,11 @@ public class PublisherService {
     @Transactional
     public Publisher findPublisherById(long publisherId) {
         return publisherRepository.findPublisherById(publisherId);
+    }
+
+    @Transactional
+    public List<Publisher> findAllPublishers() {
+        return publisherRepository.findAllPublishers();
     }
 
     @Transactional

@@ -21,7 +21,7 @@ public class PublisherController {
 
         Publisher publisher = publisherService.findPublisherById(publisherId);
 
-        return  publisher.toString();
+        return publisher.toString();
     }
 
     // POST /publisher name=Atena

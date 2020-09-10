@@ -26,7 +26,7 @@ public class PersonController {
 
         Person person = personService.findPersonById(personId);
 
-        return  person.toString();
+        return person.toString();
     }
 
     // POST /person login=admin&password=admin&email=admin@coderslab.pl
@@ -42,7 +42,7 @@ public class PersonController {
         personDetails.setLastName("Kowalski");
         personDetails.setCity("Warszawa");
         personDetails.setStreet("Marszałkowska");
-        personDetails.setStreetNumber((byte)13);
+        personDetails.setStreetNumber((byte) 13);
 
         Person person = personService.addPerson(login, password, email, personDetails);
 

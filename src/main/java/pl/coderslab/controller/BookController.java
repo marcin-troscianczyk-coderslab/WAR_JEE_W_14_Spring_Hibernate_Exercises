@@ -39,7 +39,7 @@ public class BookController {
 
         Book book = bookService.findBookById(bookId);
 
-        return  book.toString();
+        return book.toString();
     }
 
     // POST /book title=Ala ma kota&rating=5&description=Fajna książka
@@ -72,7 +72,7 @@ public class BookController {
     @DeleteMapping(path = "/book", produces = "text/plain;charset=UTF-8")
     String removeBook(@RequestParam("id") long bookId) {
 
-        Book book = bookService.removeBook(bookId);
-        return book.toString();
+        bookService.removeBook(bookId);
+        return "Książka została usunięta";
     }
 }

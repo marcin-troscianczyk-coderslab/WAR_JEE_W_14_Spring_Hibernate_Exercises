@@ -52,7 +52,7 @@ public class PersonRepository {
 
     public Person removePerson(long id) {
         Person person = entityManager.find(Person.class, id);
-        if(person != null) {
+        if (person != null) {
             entityManager.remove(person);
         }
 

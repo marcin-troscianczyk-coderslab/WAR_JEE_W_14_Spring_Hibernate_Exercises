@@ -5,6 +5,7 @@ import pl.coderslab.entity.Author;
 import pl.coderslab.repository.AuthorRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class AuthorService {
@@ -26,6 +27,11 @@ public class AuthorService {
     @Transactional
     public Author findAuthorById(long authorId) {
         return authorRepository.findAuthorById(authorId);
+    }
+
+    @Transactional
+    public List<Author> findAllAuthors() {
+        return authorRepository.findAllAuthors();
     }
 
     @Transactional

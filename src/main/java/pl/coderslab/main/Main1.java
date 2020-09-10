@@ -11,8 +11,8 @@ public class Main1 {
         EntityManagerFactory entityManagerFactory = null;
 
         try {
-             entityManagerFactory =
-                Persistence.createEntityManagerFactory("springHibernatePersistenceUnit");
+            entityManagerFactory =
+                    Persistence.createEntityManagerFactory("springHibernatePersistenceUnit");
 
             EntityManager entityManager = null;
 

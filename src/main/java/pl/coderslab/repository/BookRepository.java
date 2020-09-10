@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -34,7 +35,19 @@ public class BookRepository {
 
         List<Author> authors = Arrays.asList(author1, author2);
 
-        book.setAuthors(authors);
+        //book.setAuthors(authors);
+
+        entityManager.persist(book);
+
+        return book;
+    }
+
+    public Book addBook(Book book) {
+
+        // publisher
+        /*entityManager.persist(publisher);
+        book.setPublisher(publisher);
+        */
 
         entityManager.persist(book);
 
@@ -59,6 +72,26 @@ public class BookRepository {
         return ratingListQuery.getResultList();
     }
 
+    public List<Book> findAllBooksByPublisherIsNotNull() {
+        Query allBooksByPublishersIsNotNullQuery =
+                entityManager.createQuery("select b from Book b where b.publisher is not null");
+        return allBooksByPublishersIsNotNullQuery.getResultList();
+    }
+
+    public List<Book> findAllBooksByPublisher(Publisher publisher) {
+        Query allBooksByPublisherQuery =
+                entityManager.createQuery("select b from Book b where b.publisher = :publisher");
+        allBooksByPublisherQuery.setParameter("publisher", publisher);
+        return allBooksByPublisherQuery.getResultList();
+    }
+
+    public List<Book> findAllBooksByAuthor(Author author) {
+        Query allBooksByAuthorQuery =
+                entityManager.createQuery("select b from Book b where :author member of b.authors");
+        allBooksByAuthorQuery.setParameter("author", author);
+        return allBooksByAuthorQuery.getResultList();
+    }
+
     public Book updateBook(long bookId, String newTitle) {
         Book book = entityManager.find(Book.class, bookId);
         book.setTitle(newTitle);
@@ -67,10 +100,20 @@ public class BookRepository {
         return book;
     }
 
+    public Book updateBook(Book book) {
+        return entityManager.merge(book);
+    }
+
     public Book removeBook(long bookId) {
         Book book = entityManager.find(Book.class, bookId);
         entityManager.remove(book);
 
+        return book;
+    }
+
+    public Book removeBook(Book book) {
+        entityManager.remove(entityManager.contains(book) ?
+                book : entityManager.merge(book));
         return book;
     }
 }
